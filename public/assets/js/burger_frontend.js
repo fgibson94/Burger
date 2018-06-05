@@ -14,8 +14,7 @@ $(function () {
             type: "POST",
             data: { newBurger: burgerName }
         }).then(
-            function (data) {
-                console.log("created ", data)
+            function () {
                 location.reload();
             })
     })
@@ -24,24 +23,22 @@ $(function () {
 
 
     //Update
+
+    //Click Event
     $(".update-burger").on("click", function (event) {
         console.log("clicked")
         var name = $(this).data("name")
-        var eatBurger = $(this).attr("data", "eatBurger");
-        console.log(eatBurger)
-        console.log(name)
-
+        var eatBurger = $(this).attr("data", "eatburger");
+        console.log("here", eatBurger)
+        
         //PUT req
         $.ajax("/api/update/" + name, {
             type: "PUT",
-            data: eatBurger
+            data: { burgerName: name }
         }).then(
             function () {
-                console.log("changed burger to ", eatBurger);
                 location.reload();
-            }
-        )
-
+            })
     });
 
     //Delete
@@ -54,8 +51,7 @@ $(function () {
             type: "DELETE",
             data: { burgerName: name }
         }).then(
-            function (data) {
-                console.log("deleted burger ", data);
+            function () {
                 location.reload();
             })
     })

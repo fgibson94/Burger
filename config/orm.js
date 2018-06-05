@@ -17,7 +17,7 @@ var orm = {
         var queryString = 'INSERT INTO burgers (burger_name, devoured) VALUES (?, False)'
         connection.query(queryString, [burgerName], function (err, res) {
             if (err) throw err;
-            console.log("insertOne", res);
+            // console.log("insertOne", res);
             cb(res);
         })
 
@@ -25,24 +25,19 @@ var orm = {
     updateOne: function (burgerName, cb) {
         console.log("updated!", burgerName);
         var queryString = 'UPDATE burgers SET devoured = true WHERE burger_name = ?'
-        connection.query(queryString,
-            [
-                { burger_name: burgerName }
-            ],
-            function (err, res) {
+        connection.query(queryString, [burgerName], function (err, res) {
                 if (err) throw err;
-                console.log("updateOne", res);
+                // console.log("updateOne", res);
                 cb(res);
             })
     },
     deleteThis: function (burgerName, cb) {
         console.log("deleted", burgerName);
         var queryString = 'DELETE FROM burgers WHERE burger_name = ?'
-        console.log(queryString);
         connection.query(queryString,
             [ burgerName ], function (err, res) {
                 if (err) throw (err);
-                console.log("deleteThis", res)
+                // console.log("deleteThis", res)
                 cb(res);
             })
     }

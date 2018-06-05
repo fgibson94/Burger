@@ -23,35 +23,31 @@ router.get("/", function (req, res) {
 
 //POST
 router.post("/api/new", function (req, res) {
-    console.log("inside POST", req.body);
+    // console.log("inside POST", req.body);
     burgerModel.insert(req.body.newBurger,
         function (data) {
-            console.log("posted", data);
+            // console.log("posted", data);
             res.sendStatus(200)
         })
 })
 //PUT
 router.put("/api/update/:burgerName", function (req, res) {
     var condition = req.params.burgerName;
-    console.log("put condition", condition);
-    burgerModel.update(condition, function (result) {
+     console.log("put condition", condition);
+    burgerModel.update(condition, function (data) {
+        // console.log("check condition", condition);
 
-        if (result.changedRows == 0) {
-            // If no rows were changed, then the ID must not exist, so 404
-            return res.status(404).end();
-        } else {
-            console.log("put update", result);
-            res.status(200).end();
-        }
+        res.sendStatus(200);
+
     })
 })
 
 //DELETE
 router.delete("/api/delete/:burgerName", function (req, res) {
     var condition = req.params.burgerName;
-    console.log("delete condition", condition);
-    burgerModel.delete(condition, function (result) {
-        // console.log("delete complete", result);
+    // console.log("delete condition", condition);
+    burgerModel.delete(condition, function (data) {
+        
             res.sendStatus(200);
     })
 })
